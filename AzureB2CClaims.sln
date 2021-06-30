@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.6.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerApi", "CustomerApi\CustomerApi.csproj", "{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "b2c-assets", "b2c-assets", "{0E435A60-E8BE-49D7-A6D4-E6F3A91301CA}"
+	ProjectSection(SolutionItems) = preProject
+		b2c-assets\PasswordReset.xml = b2c-assets\PasswordReset.xml
+		b2c-assets\ProfileEdit.xml = b2c-assets\ProfileEdit.xml
+		b2c-assets\readme.md = b2c-assets\readme.md
+		b2c-assets\SignUpOrSignin.xml = b2c-assets\SignUpOrSignin.xml
+		b2c-assets\TrustFrameworkBase.xml = b2c-assets\TrustFrameworkBase.xml
+		b2c-assets\TrustFrameworkExtensions.xml = b2c-assets\TrustFrameworkExtensions.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|x64.Build.0 = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|x64.ActiveCfg = Release|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|x64.Build.0 = Release|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{6606B8B3-DF3D-46A9-B363-93FE6ADE07BF}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C8A3577-EAAE-4B85-B360-2B07F41F2E3A}
+	EndGlobalSection
+EndGlobal
