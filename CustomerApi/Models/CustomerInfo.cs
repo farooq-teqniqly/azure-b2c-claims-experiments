@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CustomerApi.Models
 {
@@ -7,6 +8,10 @@ namespace CustomerApi.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Tier Tier { get; set; }
+        public int Points { get; set; }
         public IEnumerable<Privilege> Privileges { get; set; }
     }
 }

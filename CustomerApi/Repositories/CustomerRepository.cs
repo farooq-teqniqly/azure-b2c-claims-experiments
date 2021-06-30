@@ -14,6 +14,8 @@ namespace CustomerApi.Repositories
             {
                 Id = Guid.Parse("9fa06113-5a99-448f-ab96-62ae065950ae"),
                 Name = "I.P. Freely",
+                Tier = Tier.Platinum,
+                Points = 145703,
                 Privileges = new List<Privilege>
                 {
                     new Privilege
