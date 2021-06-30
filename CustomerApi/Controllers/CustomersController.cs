@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CustomerApi.Models;
 using CustomerApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,10 @@ namespace CustomerApi.Controllers
             this.customerRepository = customerRepository;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCustomerInfo(Guid id)
+        [HttpPost]
+        public async Task<IActionResult> GetCustomerInfo([FromBody] GetCustomerInfoRequestModel requestModel)
         {
-            var customerInfo = await this.customerRepository.GetCustomerInfoAsync(id);
+            var customerInfo = await this.customerRepository.GetCustomerInfoAsync(requestModel.CustomerId);
 
             if (customerInfo == null)
             {
