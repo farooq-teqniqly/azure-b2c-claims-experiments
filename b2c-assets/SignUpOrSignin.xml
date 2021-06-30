@@ -39,6 +39,9 @@
         <OutputClaim ClaimTypeReferenceId="tenantId"
                      AlwaysUseDefaultValue="true"
                      DefaultValue="{Policy:TenantObjectId}" />
+        <OutputClaim ClaimTypeReferenceId="tier" />
+        <OutputClaim ClaimTypeReferenceId="points" />
+        <OutputClaim ClaimTypeReferenceId="privileges" />
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>

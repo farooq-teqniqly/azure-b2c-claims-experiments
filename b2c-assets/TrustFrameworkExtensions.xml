@@ -11,6 +11,28 @@
     <PolicyId>B2C_1A_TrustFrameworkBase</PolicyId>
   </BasePolicy>
   <BuildingBlocks>
+    <ClaimsSchema>
+      <ClaimType Id="customerId">
+        <DisplayName>customerId</DisplayName>
+        <DataType>string</DataType>
+        <UserHelpText>The customer's id.</UserHelpText>
+      </ClaimType>
+      <ClaimType Id="tier">
+        <DisplayName>tier</DisplayName>
+        <DataType>string</DataType>
+        <UserHelpText>The customer's loyalty program tier.</UserHelpText>
+      </ClaimType>
+      <ClaimType Id="points">
+        <DisplayName>points</DisplayName>
+        <DataType>int</DataType>
+        <UserHelpText>The customer's loyalty program points.</UserHelpText>
+      </ClaimType>
+      <ClaimType Id="privileges">
+        <DisplayName>privileges</DisplayName>
+        <DataType>stringCollection</DataType>
+        <UserHelpText>The customer's account privileges.</UserHelpText>
+      </ClaimType>
+    </ClaimsSchema>
     <ContentDefinitions>
       <ContentDefinition Id="api.signuporsignin">
         <!-- <LoadUri>~/tenant/default/unified.cshtml</LoadUri> -->
@@ -38,6 +60,42 @@
                         PartnerClaimType="resource"
                         DefaultValue="8d9038ed-1a6c-41d1-a755-d9a3d46eb2d6" />
           </InputClaims>
+        </TechnicalProfile>
+        <TechnicalProfile Id="SelfAsserted-LocalAccountSignin-Email">
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="tier" />
+            <OutputClaim ClaimTypeReferenceId="points" />
+            <OutputClaim ClaimTypeReferenceId="privileges" />
+          </OutputClaims>
+          <ValidationTechnicalProfiles>
+            <ValidationTechnicalProfile ReferenceId="REST-API-GetCustomerInfo" />
+          </ValidationTechnicalProfiles>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+    <ClaimsProvider>
+      <DisplayName>Call REST APIs</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="REST-API-GetCustomerInfo">
+          <DisplayName>Returns the customer's claims.</DisplayName>
+          <Protocol Name="Proprietary"
+                    Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ServiceUrl">http://3e3b508683c3.ngrok.io/customers</Item>
+            <Item Key="AuthenticationType">None</Item>
+            <Item Key="SendClaimsIn">Body</Item>
+            <Item Key="AllowInsecureInProduction">true</Item>
+            <Item Key="ResolveJsonPathsInJsonTokens">true</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="customerId"/>
+            <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="email"/>
+          </InputClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="tier" />
+            <OutputClaim ClaimTypeReferenceId="points" />
+            <OutputClaim ClaimTypeReferenceId="privileges"/>
+          </OutputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>

@@ -4,6 +4,6 @@ namespace CustomerApi.Models
 {
     public class GetCustomerInfoRequestModel
     {
-        public Guid CustomerId { get; set; }
+        public string Email { get; set; }
     }
 }

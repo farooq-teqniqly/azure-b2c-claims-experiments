@@ -6,6 +6,6 @@ namespace CustomerApi.Repositories
 {
     public interface ICustomerRepository
     {
-        Task<CustomerInfo> GetCustomerInfoAsync(Guid id);
+        Task<CustomerInfo> GetCustomerInfoAsync(string email);
     }
 }

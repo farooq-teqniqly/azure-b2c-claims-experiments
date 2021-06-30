@@ -16,6 +16,7 @@ namespace CustomerApi.Repositories
                 Name = "I.P. Freely",
                 Tier = Tier.Platinum,
                 Points = 145703,
+                Email = "bovated943@advew.com",
                 Privileges = new List<Privilege>
                 {
                     new Privilege
@@ -41,11 +42,12 @@ namespace CustomerApi.Repositories
             }
         };
 
-        public Task<CustomerInfo> GetCustomerInfoAsync(Guid id)
+        public Task<CustomerInfo> GetCustomerInfoAsync(string email)
         {
             return Task.FromResult(
                 this.customerInfos.SingleOrDefault(
-                    ci => ci.Id == id));
+                    ci => string.Equals(ci.Email.ToLowerInvariant(), email.ToLowerInvariant(),
+                        StringComparison.OrdinalIgnoreCase)));
         }
     }
 }

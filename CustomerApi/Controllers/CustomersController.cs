@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CustomerApi.Models;
 using CustomerApi.Repositories;
@@ -20,14 +21,31 @@ namespace CustomerApi.Controllers
         [HttpPost]
         public async Task<IActionResult> GetCustomerInfo([FromBody] GetCustomerInfoRequestModel requestModel)
         {
-            var customerInfo = await this.customerRepository.GetCustomerInfoAsync(requestModel.CustomerId);
+            var customerInfo = await this.customerRepository.GetCustomerInfoAsync(requestModel.Email);
 
             if (customerInfo == null)
             {
                 return this.NotFound();
             }
 
-            return this.Ok(customerInfo);
+            var privileges = new List<string>();
+
+            foreach (var privilege in customerInfo.Privileges)
+            {
+                foreach (var applicationPrivilege in privilege.ApplicationPrivileges)
+                {
+                    privileges.Add($"{applicationPrivilege.Id}:{applicationPrivilege.Scope}:{applicationPrivilege.Role}");
+                }
+            }
+
+            var responseModel = new GetCustomerInfoResponseModel
+            {
+                Points = customerInfo.Points,
+                Tier = customerInfo.Tier,
+                Privileges = privileges
+            };
+
+            return this.Ok(responseModel);
         }
     }
 }
