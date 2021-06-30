@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                      xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
+                      PolicySchemaVersion="0.3.0.0"
+                      TenantId="farooqent.onmicrosoft.com"
+                      PolicyId="B2C_1A_TrustFrameworkExtensions"
+                      PublicPolicyUri="http://farooqent.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
+  <BasePolicy>
+    <TenantId>farooqent.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_TrustFrameworkBase</PolicyId>
+  </BasePolicy>
+  <BuildingBlocks>
+    <ContentDefinitions>
+      <ContentDefinition Id="api.signuporsignin">
+        <!-- <LoadUri>~/tenant/default/unified.cshtml</LoadUri> -->
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:unifiedssp:1.1.0</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Signin and Signup</Item>
+        </Metadata>
+      </ContentDefinition>
+    </ContentDefinitions>
+  </BuildingBlocks>
+  <ClaimsProviders>
+    <ClaimsProvider>
+      <DisplayName>Local Account SignIn</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="login-NonInteractive">
+          <Metadata>
+            <Item Key="client_id">04002245-2d45-4ed0-b405-443f360142b0</Item>
+            <Item Key="IdTokenAudience">8d9038ed-1a6c-41d1-a755-d9a3d46eb2d6</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="client_id"
+                        DefaultValue="04002245-2d45-4ed0-b405-443f360142b0" />
+            <InputClaim ClaimTypeReferenceId="resource_id"
+                        PartnerClaimType="resource"
+                        DefaultValue="8d9038ed-1a6c-41d1-a755-d9a3d46eb2d6" />
+          </InputClaims>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+  <!-- UserJourneys>
+	
+	</UserJourneys -->
+</TrustFrameworkPolicy>
