@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CustomerApi.Models
+﻿namespace CustomerApi.Models
 {
     public class GetCustomerInfoRequestModel
     {

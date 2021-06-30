@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CustomerApi.Models;
 using CustomerApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +12,12 @@ namespace CustomerApi.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerRepository customerRepository;
+        private readonly IMapper mapper;
 
-        public CustomersController(ICustomerRepository customerRepository)
+        public CustomersController(ICustomerRepository customerRepository, IMapper mapper)
         {
             this.customerRepository = customerRepository;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -28,24 +30,8 @@ namespace CustomerApi.Controllers
                 return this.NotFound();
             }
 
-            var privileges = new List<string>();
-
-            foreach (var privilege in customerInfo.Privileges)
-            {
-                foreach (var applicationPrivilege in privilege.ApplicationPrivileges)
-                {
-                    privileges.Add($"{applicationPrivilege.Id}:{applicationPrivilege.Scope}:{applicationPrivilege.Role}");
-                }
-            }
-
-            var responseModel = new GetCustomerInfoResponseModel
-            {
-                Points = customerInfo.Points,
-                Tier = customerInfo.Tier,
-                Privileges = privileges
-            };
-
-            return this.Ok(responseModel);
+            var response = this.mapper.Map<CustomerInfo, GetCustomerInfoResponseModel>(customerInfo);
+            return this.Ok(response);
         }
     }
 }

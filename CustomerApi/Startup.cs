@@ -1,8 +1,11 @@
+using AutoMapper;
+using CustomerApi.Mappers;
 using CustomerApi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
@@ -28,6 +31,12 @@ namespace CustomerApi
             });
 
             services.AddSingleton<ICustomerRepository, CustomerRepository>();
+
+            var mapperConfig = new MapperConfiguration(
+                cfg => cfg.AddProfile<ApiMappingProfile>());
+
+            var mapper = new Mapper(mapperConfig);
+            services.TryAddSingleton<IMapper>(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
